@@ -1520,6 +1520,17 @@ note: PRIORITY must be anywhere from A to Z."
     fi
     ;;
 
+"edit" )
+    X_CUSTOM_EDITOR="$2"
+    "${X_CUSTOM_EDITOR:-$EDITOR}" "$TODO_FILE"
+    ;;
+
+"sort" )
+    TODO_FILE_SORT="${TODO_FILE}.sort"
+    sort "$TODO_FILE" > "$TODO_FILE_SORT"
+    mv "$TODO_FILE_SORT" "$TODO_FILE"
+    ;;
+
 * )
     usage;;
 esac
