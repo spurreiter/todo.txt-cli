@@ -1522,7 +1522,13 @@ note: PRIORITY must be anywhere from A to Z."
 
 "edit" )
     X_CUSTOM_EDITOR="$2"
-    "${X_CUSTOM_EDITOR:-$EDITOR}" "$TODO_FILE"
+    X_EDITOR="${X_CUSTOM_EDITOR:-$EDITOR}"
+    if [ -z "$X_EDITOR" ]; then
+      echo "    No EDITOR found."
+      echo "    $0 sort vi"
+      exit 1
+    fi
+    "$X_EDITOR" "$TODO_FILE"
     ;;
 
 "sort" )
